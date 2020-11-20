@@ -76,12 +76,17 @@ pub struct Subreddit {
 impl Subreddit {
     /// Create a new `Subreddit` instance.
     pub fn new(name: &str) -> Subreddit {
+        Self::new_with_http_client(name, Client::new())
+    }
+
+    /// Create a new `Subreddit` instance with a provided HTTP client.
+    pub fn new_with_http_client(name: &str, http_client: Client) -> Subreddit {
         let subreddit_url = format!("https://www.reddit.com/r/{}", name);
 
         Subreddit {
             name: name.to_owned(),
             url: subreddit_url,
-            client: Client::new(),
+            client: http_client,
         }
     }
 

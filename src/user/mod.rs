@@ -41,9 +41,14 @@ pub struct User {
 impl User {
     /// Create a new `User` instance.
     pub fn new(user: &str) -> User {
+        Self::new_with_http_client(user, Client::new())
+    }
+
+    /// Create a new `User` instance with a providede HTTP client.
+    pub fn new_with_http_client(user: &str, http_client: Client) -> User {
         User {
             user: user.to_owned(),
-            client: Client::new(),
+            client: http_client,
         }
     }
 

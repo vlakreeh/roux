@@ -92,9 +92,14 @@ struct AuthData {
 impl Reddit {
     /// Creates a `Reddit` instance with user_agent, client_id, and client_secret.
     pub fn new(user_agent: &str, client_id: &str, client_secret: &str) -> Reddit {
+        Self::new_with_http_client(user_agent, client_id, client_secret, Client::new())
+    }
+
+    /// Creates a `Reddit` instance with user_agent, client_id, and client_secret using a provided HTTP client.
+    pub fn new_with_http_client(user_agent: &str, client_id: &str, client_secret: &str, http_client: Client) -> Reddit {
         Reddit {
             config: config::Config::new(&user_agent, &client_id, &client_secret),
-            client: Client::new(),
+            client: http_client,
         }
     }
 
