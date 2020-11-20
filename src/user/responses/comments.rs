@@ -17,6 +17,8 @@ pub struct UserCommentsData {
     pub subreddit: String,
     /// Created
     pub created: f64,
+    /// Created utc
+    pub created_utc: u64,
 }
 
 /// UserComments
